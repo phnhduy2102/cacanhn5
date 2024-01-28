@@ -1,6 +1,6 @@
 @extends('frontend.layouts.master')
 
-@section('title','Ecommerce Laravel || Order Track Page')
+@section('title','Cá cảnh N5 || THEO DÕI ĐƠN HÀNG')
 
 @section('main-content')
     <!-- Breadcrumbs -->

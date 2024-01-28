@@ -1,6 +1,6 @@
 @extends('frontend.layouts.master')
 
-@section('title','Ecommerce Laravel || Register Page')
+@section('title','Cá cảnh N5 || Đăng kí')
 
 @section('main-content')
 	<!-- Breadcrumbs -->

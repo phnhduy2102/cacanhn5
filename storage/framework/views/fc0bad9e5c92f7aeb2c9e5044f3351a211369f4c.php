@@ -1,5 +1,5 @@
 
-<?php $__env->startSection('title','Ecommerce Laravel || HOME PAGE'); ?>
+<?php $__env->startSection('title','Cá cảnh N5 || TRANG CHỦ'); ?>
 <?php $__env->startSection('main-content'); ?>
 <!-- Slider Area -->
 <?php if(count($banners)>0): ?>

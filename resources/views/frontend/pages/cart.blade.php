@@ -1,5 +1,5 @@
 @extends('frontend.layouts.master')
-@section('title','Cart Page')
+@section('title','Cá cảnh N5 || ĐƠN HÀNG')
 @section('main-content')
 	<!-- Breadcrumbs -->
 	<div class="breadcrumbs">

@@ -1,8 +1,8 @@
-@extends('frontend.layouts.master')
 
-@section('title','Cá cảnh N5 || SẢN PHẨM')
 
-@section('main-content')
+<?php $__env->startSection('title','Cá cảnh N5 || SẢN PHẨM'); ?>
+
+<?php $__env->startSection('main-content'); ?>
 	<!-- Breadcrumbs -->
     <div class="breadcrumbs">
         <div class="container">
@@ -21,8 +21,8 @@
     <!-- End Breadcrumbs -->
 
     <!-- Product Style -->
-    <form action="{{route('shop.filter')}}" method="POST">
-        @csrf
+    <form action="<?php echo e(route('shop.filter')); ?>" method="POST">
+        <?php echo csrf_field(); ?>
         <section class="product-area shop-sidebar shop section">
             <div class="container">
                 <div class="row">
@@ -32,32 +32,28 @@
                                 <div class="single-widget category">
                                     <h3 class="title">Danh mục</h3>
                                     <ul class="categor-list">
-										@php
+										<?php
 											// $category = new Category();
 											$menu=App\Models\Category::getAllParentWithChild();
-										@endphp
-										@if($menu)
+										?>
+										<?php if($menu): ?>
 										<li>
-											@foreach($menu as $cat_info)
-													@if($cat_info->child_cat->count()>0)
-														<li><a href="{{route('product-cat',$cat_info->slug)}}">{{$cat_info->title}}</a>
+											<?php $__currentLoopData = $menu; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $cat_info): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+													<?php if($cat_info->child_cat->count()>0): ?>
+														<li><a href="<?php echo e(route('product-cat',$cat_info->slug)); ?>"><?php echo e($cat_info->title); ?></a>
 															<ul>
-																@foreach($cat_info->child_cat as $sub_menu)
-																	<li><a href="{{route('product-sub-cat',[$cat_info->slug,$sub_menu->slug])}}">{{$sub_menu->title}}</a></li>
-																@endforeach
+																<?php $__currentLoopData = $cat_info->child_cat; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $sub_menu): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+																	<li><a href="<?php echo e(route('product-sub-cat',[$cat_info->slug,$sub_menu->slug])); ?>"><?php echo e($sub_menu->title); ?></a></li>
+																<?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 															</ul>
 														</li>
-													@else
-														<li><a href="{{route('product-cat',$cat_info->slug)}}">{{$cat_info->title}}</a></li>
-													@endif
-											@endforeach
+													<?php else: ?>
+														<li><a href="<?php echo e(route('product-cat',$cat_info->slug)); ?>"><?php echo e($cat_info->title); ?></a></li>
+													<?php endif; ?>
+											<?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 										</li>
-										@endif
-                                        {{-- @foreach(Helper::productCategoryList('products') as $cat)
-                                            @if($cat->is_parent==1)
-												<li><a href="{{route('product-cat',$cat->slug)}}">{{$cat->title}}</a></li>
-											@endif
-                                        @endforeach --}}
+										<?php endif; ?>
+                                        
                                     </ul>
                                 </div>
                                 <!--/ End Single Widget -->
@@ -66,17 +62,17 @@
                                         <h3 class="title">Tìm kiếm theo giá</h3>
                                         <div class="price-filter">
                                             <div class="price-filter-inner">
-                                                @php
+                                                <?php
                                                     $max=DB::table('products')->max('price');
                                                     // dd($max);
-                                                @endphp
-                                                <div id="slider-range" data-min="0" data-max="{{$max}}"></div>
+                                                ?>
+                                                <div id="slider-range" data-min="0" data-max="<?php echo e($max); ?>"></div>
                                                 <div class="product_filter">
                                                 <button type="submit" class="filter_button">Tìm</button>
                                                 <div class="label-input">
                                                     <span>Khoảng giá:</span>
                                                     <input style="" type="text" id="amount" readonly/>
-                                                    <input type="hidden" name="price_range" id="price_range" value="@if(!empty($_GET['price'])){{$_GET['price']}}@endif"/>
+                                                    <input type="hidden" name="price_range" id="price_range" value="<?php if(!empty($_GET['price'])): ?><?php echo e($_GET['price']); ?><?php endif; ?>"/>
                                                 </div>
                                                 </div>
                                             </div>
@@ -87,39 +83,39 @@
                                 <!-- Single Widget -->
                                 <div class="single-widget recent-post">
                                     <h3 class="title">Sản phẩm mới</h3>
-                                    {{-- {{dd($recent_products)}} --}}
-                                    @foreach($recent_products as $product)
+                                    
+                                    <?php $__currentLoopData = $recent_products; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $product): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                         <!-- Single Post -->
-                                        @php
+                                        <?php
                                             $photo=explode(',',$product->photo);
-                                        @endphp
+                                        ?>
                                         <div class="single-post first">
                                             <div class="image">
-                                                <img src="{{$photo[0]}}" alt="{{$photo[0]}}">
+                                                <img src="<?php echo e($photo[0]); ?>" alt="<?php echo e($photo[0]); ?>">
                                             </div>
                                             <div class="content">
-                                                <h5><a href="{{route('product-detail',$product->slug)}}">{{$product->title}}</a></h5>
-                                                @php
+                                                <h5><a href="<?php echo e(route('product-detail',$product->slug)); ?>"><?php echo e($product->title); ?></a></h5>
+                                                <?php
                                                     $org=($product->price-($product->price*$product->discount)/100);
-                                                @endphp
-                                                <p class="price"><del class="text-muted">{{number_format($product->price)}}đ</del>   {{number_format($org)}}đ  </p>
+                                                ?>
+                                                <p class="price"><del class="text-muted"><?php echo e(number_format($product->price)); ?>đ</del>   <?php echo e(number_format($org)); ?>đ  </p>
 
                                             </div>
                                         </div>
                                         <!-- End Single Post -->
-                                    @endforeach
+                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                 </div>
                                 <!--/ End Single Widget -->
                                 <!-- Single Widget -->
                                 <div class="single-widget category">
                                     <h3 class="title">Thương hiệu</h3>
                                     <ul class="categor-list">
-                                        @php
+                                        <?php
                                             $brands=DB::table('brands')->orderBy('title','ASC')->where('status','active')->get();
-                                        @endphp
-                                        @foreach($brands as $brand)
-                                            <li><a href="{{route('product-brand',$brand->slug)}}">{{$brand->title}}</a></li>
-                                        @endforeach
+                                        ?>
+                                        <?php $__currentLoopData = $brands; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $brand): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                            <li><a href="<?php echo e(route('product-brand',$brand->slug)); ?>"><?php echo e($brand->title); ?></a></li>
+                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                     </ul>
                                 </div>
                                 <!--/ End Single Widget -->
@@ -135,79 +131,80 @@
                                             <label>Hiện :</label>
                                             <select class="show" name="show" onchange="this.form.submit();">
                                                 <option value="">Mặc định</option>
-                                                <option value="9" @if(!empty($_GET['show']) && $_GET['show']=='9') selected @endif>09</option>
-                                                <option value="15" @if(!empty($_GET['show']) && $_GET['show']=='15') selected @endif>15</option>
-                                                <option value="21" @if(!empty($_GET['show']) && $_GET['show']=='21') selected @endif>21</option>
-                                                <option value="30" @if(!empty($_GET['show']) && $_GET['show']=='30') selected @endif>30</option>
+                                                <option value="9" <?php if(!empty($_GET['show']) && $_GET['show']=='9'): ?> selected <?php endif; ?>>09</option>
+                                                <option value="15" <?php if(!empty($_GET['show']) && $_GET['show']=='15'): ?> selected <?php endif; ?>>15</option>
+                                                <option value="21" <?php if(!empty($_GET['show']) && $_GET['show']=='21'): ?> selected <?php endif; ?>>21</option>
+                                                <option value="30" <?php if(!empty($_GET['show']) && $_GET['show']=='30'): ?> selected <?php endif; ?>>30</option>
                                             </select>
                                         </div>
                                         <div class="single-shorter">
                                             <label>Bộ lọc :</label>
                                             <select class='sortBy' name='sortBy' onchange="this.form.submit();">
                                                 <option value="">Mặc định</option>
-                                                <option value="title" @if(!empty($_GET['sortBy']) && $_GET['sortBy']=='title') selected @endif>Tên</option>
-                                                <option value="price" @if(!empty($_GET['sortBy']) && $_GET['sortBy']=='price') selected @endif>Giá</option>
-                                                <option value="category" @if(!empty($_GET['sortBy']) && $_GET['sortBy']=='category') selected @endif>Danh mục</option>
-                                                <option value="brand" @if(!empty($_GET['sortBy']) && $_GET['sortBy']=='brand') selected @endif>Thương hiệu</option>
+                                                <option value="title" <?php if(!empty($_GET['sortBy']) && $_GET['sortBy']=='title'): ?> selected <?php endif; ?>>Tên</option>
+                                                <option value="price" <?php if(!empty($_GET['sortBy']) && $_GET['sortBy']=='price'): ?> selected <?php endif; ?>>Giá</option>
+                                                <option value="category" <?php if(!empty($_GET['sortBy']) && $_GET['sortBy']=='category'): ?> selected <?php endif; ?>>Danh mục</option>
+                                                <option value="brand" <?php if(!empty($_GET['sortBy']) && $_GET['sortBy']=='brand'): ?> selected <?php endif; ?>>Thương hiệu</option>
                                             </select>
                                         </div>
                                     </div>
                                     <ul class="view-mode">
                                         <li class="active"><a href="javascript:void(0)"><i class="fa fa-th-large"></i></a></li>
-                                        <li><a href="{{route('product-lists')}}"><i class="fa fa-th-list"></i></a></li>
+                                        <li><a href="<?php echo e(route('product-lists')); ?>"><i class="fa fa-th-list"></i></a></li>
                                     </ul>
                                 </div>
                                 <!--/ End Shop Top -->
                             </div>
                         </div>
                         <div class="row">
-                            {{-- {{$products}} --}}
-                            @if(count($products)>0)
-                                @foreach($products as $product)
+                            
+                            <?php if(count($products)>0): ?>
+                                <?php $__currentLoopData = $products; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $product): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                     <div class="col-lg-4 col-md-6 col-12">
                                         <div class="single-product">
                                             <div class="product-img">
-                                                <a href="{{route('product-detail',$product->slug)}}">
-                                                    @php
+                                                <a href="<?php echo e(route('product-detail',$product->slug)); ?>">
+                                                    <?php
                                                         $photo=explode(',',$product->photo);
-                                                    @endphp
-                                                    <img class="default-img" src="{{$photo[0]}}" alt="{{$photo[0]}}">
-                                                    <img class="hover-img" src="{{$photo[0]}}" alt="{{$photo[0]}}">
-                                                    @if($product->discount)
-                                                                <span class="price-dec">Giảm {{$product->discount}} % </span>
-                                                    @endif
+                                                    ?>
+                                                    <img class="default-img" src="<?php echo e($photo[0]); ?>" alt="<?php echo e($photo[0]); ?>">
+                                                    <img class="hover-img" src="<?php echo e($photo[0]); ?>" alt="<?php echo e($photo[0]); ?>">
+                                                    <?php if($product->discount): ?>
+                                                                <span class="price-dec">Giảm <?php echo e($product->discount); ?> % </span>
+                                                    <?php endif; ?>
                                                 </a>
                                                 <div class="button-head">
                                                     <div class="product-action">
-                                                        <a data-toggle="modal" data-target="#{{$product->id}}" title="Quick View" href="#"><i class=" ti-eye"></i><span>Xem nhanh</span></a>
-                                                        <a title="Wishlist" href="{{route('add-to-wishlist',$product->slug)}}" class="wishlist" data-id="{{$product->id}}"><i class=" ti-heart "></i><span>Thêm vào yêu thích</span></a>
+                                                        <a data-toggle="modal" data-target="#<?php echo e($product->id); ?>" title="Quick View" href="#"><i class=" ti-eye"></i><span>Xem nhanh</span></a>
+                                                        <a title="Wishlist" href="<?php echo e(route('add-to-wishlist',$product->slug)); ?>" class="wishlist" data-id="<?php echo e($product->id); ?>"><i class=" ti-heart "></i><span>Thêm vào yêu thích</span></a>
                                                     </div>
                                                     <div class="product-action-2">
-                                                        <a title="Add to cart" href="{{route('add-to-cart',$product->slug)}}">Thêm vào giỏ hàng</a>
+                                                        <a title="Add to cart" href="<?php echo e(route('add-to-cart',$product->slug)); ?>">Thêm vào giỏ hàng</a>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="product-content">
-                                                <h3><a href="{{route('product-detail',$product->slug)}}">{{$product->title}}</a></h3>
-                                                @php
+                                                <h3><a href="<?php echo e(route('product-detail',$product->slug)); ?>"><?php echo e($product->title); ?></a></h3>
+                                                <?php
                                                     $after_discount=($product->price-($product->price*$product->discount)/100);
-                                                @endphp
-                                                <span>{{number_format($after_discount)}}đ</span>
-                                                <del style="padding-left:4%;">{{number_format($product->price)}}đ</del>
+                                                ?>
+                                                <span><?php echo e(number_format($after_discount)); ?>đ</span>
+                                                <del style="padding-left:4%;"><?php echo e(number_format($product->price)); ?>đ</del>
                                             </div>
                                         </div>
                                     </div>
-                                @endforeach
-                            @else
+                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                            <?php else: ?>
                                     <h4 class="text-warning" style="margin:100px auto;">Không có sản phẩm.</h4>
-                            @endif
+                            <?php endif; ?>
 
 
 
                         </div>
                         <div class="row">
                             <div class="col-md-12 justify-content-center d-flex">
-                                {{$products->appends($_GET)->links()}}
+                                <?php echo e($products->appends($_GET)->links()); ?>
+
                             </div>
                           </div>
 
@@ -222,9 +219,9 @@
 
 
     <!-- Modal -->
-    @if($products)
-        @foreach($products as $key=>$product)
-            <div class="modal fade" id="{{$product->id}}" tabindex="-1" role="dialog">
+    <?php if($products): ?>
+        <?php $__currentLoopData = $products; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key=>$product): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+            <div class="modal fade" id="<?php echo e($product->id); ?>" tabindex="-1" role="dialog">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
@@ -236,100 +233,88 @@
                                         <!-- Product Slider -->
                                             <div class="product-gallery">
                                                 <div class="quickview-slider-active">
-                                                    @php
+                                                    <?php
                                                         $photo=explode(',',$product->photo);
                                                     // dd($photo);
-                                                    @endphp
-                                                    @foreach($photo as $data)
+                                                    ?>
+                                                    <?php $__currentLoopData = $photo; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $data): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                                         <div class="single-slider">
-                                                            <img src="{{$data}}" alt="{{$data}}">
+                                                            <img src="<?php echo e($data); ?>" alt="<?php echo e($data); ?>">
                                                         </div>
-                                                    @endforeach
+                                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                                 </div>
                                             </div>
                                         <!-- End Product slider -->
                                     </div>
                                     <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
                                         <div class="quickview-content">
-                                            <h2>{{$product->title}}</h2>
+                                            <h2><?php echo e($product->title); ?></h2>
                                             <div class="quickview-ratting-review">
                                                 <div class="quickview-ratting-wrap">
                                                     <div class="quickview-ratting">
-                                                        {{-- <i class="yellow fa fa-star"></i>
-                                                        <i class="yellow fa fa-star"></i>
-                                                        <i class="yellow fa fa-star"></i>
-                                                        <i class="yellow fa fa-star"></i>
-                                                        <i class="fa fa-star"></i> --}}
-                                                        @php
+                                                        
+                                                        <?php
                                                             $rate=DB::table('product_reviews')->where('product_id',$product->id)->avg('rate');
                                                             $rate_count=DB::table('product_reviews')->where('product_id',$product->id)->count();
-                                                        @endphp
-                                                        @for($i=1; $i<=5; $i++)
-                                                            @if($rate>=$i)
+                                                        ?>
+                                                        <?php for($i=1; $i<=5; $i++): ?>
+                                                            <?php if($rate>=$i): ?>
                                                                 <i class="yellow fa fa-star"></i>
-                                                            @else
+                                                            <?php else: ?>
                                                             <i class="fa fa-star"></i>
-                                                            @endif
-                                                        @endfor
+                                                            <?php endif; ?>
+                                                        <?php endfor; ?>
                                                     </div>
-                                                    <a href="#"> ({{$rate_count}} Đánh giá)</a>
+                                                    <a href="#"> (<?php echo e($rate_count); ?> Đánh giá)</a>
                                                 </div>
                                                 <div class="quickview-stock">
-                                                    @if($product->stock >0)
-                                                    <span><i class="fa fa-check-circle-o"></i> {{$product->stock}} Còn hàng</span>
-                                                    @else
-                                                    <span><i class="fa fa-times-circle-o text-danger"></i> {{$product->stock}} Hết hàng</span>
-                                                    @endif
+                                                    <?php if($product->stock >0): ?>
+                                                    <span><i class="fa fa-check-circle-o"></i> <?php echo e($product->stock); ?> Còn hàng</span>
+                                                    <?php else: ?>
+                                                    <span><i class="fa fa-times-circle-o text-danger"></i> <?php echo e($product->stock); ?> Hết hàng</span>
+                                                    <?php endif; ?>
                                                 </div>
                                             </div>
-                                            @php
+                                            <?php
                                                 $after_discount=($product->price-($product->price*$product->discount)/100);
-                                            @endphp
-                                            <h3><small><del class="text-muted">{{number_format($product->price)}}đ</del></small>    {{number_format($after_discount)}}đ  </h3>
+                                            ?>
+                                            <h3><small><del class="text-muted"><?php echo e(number_format($product->price)); ?>đ</del></small>    <?php echo e(number_format($after_discount)); ?>đ  </h3>
                                             <div class="quickview-peragraph">
-                                                <p>{!! html_entity_decode($product->summary) !!}</p>
+                                                <p><?php echo html_entity_decode($product->summary); ?></p>
                                             </div>
-                                            @if($product->size)
+                                            <?php if($product->size): ?>
                                                 <div class="size">
                                                     <h4>Size</h4>
                                                     <ul>
-                                                        @php
+                                                        <?php
                                                             $sizes=explode(',',$product->size);
                                                             // dd($sizes);
-                                                        @endphp
-                                                        @foreach($sizes as $size)
-                                                        <li><a href="#" class="one">{{$size}}</a></li>
-                                                        @endforeach
+                                                        ?>
+                                                        <?php $__currentLoopData = $sizes; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $size): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                        <li><a href="#" class="one"><?php echo e($size); ?></a></li>
+                                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                                     </ul>
                                                 </div>
-                                            @endif
+                                            <?php endif; ?>
                                             <div class="size">
                                                 <div class="row">
                                                     <div class="col-lg-6 col-12">
                                                         <h5 class="title">Size</h5>
                                                         <select>
-                                                            @php
+                                                            <?php
                                                             $sizes=explode(',',$product->size);
                                                             // dd($sizes);
-                                                            @endphp
-                                                            @foreach($sizes as $size)
-                                                                <option>{{$size}}</option>
-                                                            @endforeach
+                                                            ?>
+                                                            <?php $__currentLoopData = $sizes; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $size): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                                <option><?php echo e($size); ?></option>
+                                                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                                         </select>
                                                     </div>
-                                                    {{-- <div class="col-lg-6 col-12">
-                                                        <h5 class="title">Color</h5>
-                                                        <select>
-                                                            <option selected="selected">orange</option>
-                                                            <option>purple</option>
-                                                            <option>black</option>
-                                                            <option>pink</option>
-                                                        </select>
-                                                    </div> --}}
+                                                    
                                                 </div>
                                             </div>
-                                            <form action="{{route('single-add-to-cart')}}" method="POST">
-                                                @csrf
+                                            <form action="<?php echo e(route('single-add-to-cart')); ?>" method="POST">
+                                                <?php echo csrf_field(); ?>
                                                 <div class="quantity">
                                                     <!-- Input Order -->
                                                     <div class="input-group">
@@ -338,7 +323,7 @@
                                                                 <i class="ti-minus"></i>
                                                             </button>
                                                         </div>
-                                                        <input type="hidden" name="slug" value="{{$product->slug}}">
+                                                        <input type="hidden" name="slug" value="<?php echo e($product->slug); ?>">
                                                         <input type="text" name="quant[1]" class="input-number"  data-min="1" data-max="1000" value="1">
                                                         <div class="button plus">
                                                             <button type="button" class="btn btn-primary btn-number" data-type="plus" data-field="quant[1]">
@@ -350,7 +335,7 @@
                                                 </div>
                                                 <div class="add-to-cart">
                                                     <button type="submit" class="btn">Thêm vào giỏ hàng</button>
-                                                    <a href="{{route('add-to-wishlist',$product->slug)}}" class="btn min"><i class="ti-heart"></i></a>
+                                                    <a href="<?php echo e(route('add-to-wishlist',$product->slug)); ?>" class="btn min"><i class="ti-heart"></i></a>
                                                 </div>
                                             </form>
                                             <div class="default-social">
@@ -363,12 +348,12 @@
                         </div>
                     </div>
             </div>
-        @endforeach
-    @endif
+        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+    <?php endif; ?>
     <!-- Modal end -->
 
-@endsection
-@push('styles')
+<?php $__env->stopSection(); ?>
+<?php $__env->startPush('styles'); ?>
 <style>
     .pagination{
         display:inline-flex;
@@ -382,40 +367,10 @@
         color: white;
     }
 </style>
-@endpush
-@push('scripts')
+<?php $__env->stopPush(); ?>
+<?php $__env->startPush('scripts'); ?>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
-    {{-- <script>
-        $('.cart').click(function(){
-            var quantity=1;
-            var pro_id=$(this).data('id');
-            $.ajax({
-                url:"{{route('add-to-cart')}}",
-                type:"POST",
-                data:{
-                    _token:"{{csrf_token()}}",
-                    quantity:quantity,
-                    pro_id:pro_id
-                },
-                success:function(response){
-                    console.log(response);
-					if(typeof(response)!='object'){
-						response=$.parseJSON(response);
-					}
-					if(response.status){
-						swal('success',response.msg,'success').then(function(){
-							document.location.href=document.location.href;
-						});
-					}
-                    else{
-                        swal('error',response.msg,'error').then(function(){
-							// document.location.href=document.location.href;
-						});
-                    }
-                }
-            })
-        });
-    </script> --}}
+    
     <script>
         $(document).ready(function(){
         /*----------------------------------------------------*/
@@ -449,4 +404,6 @@
             }
         })
     </script>
-@endpush
+<?php $__env->stopPush(); ?>
+
+<?php echo $__env->make('frontend.layouts.master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH D:\laragon\www\cacanhn5\resources\views/frontend/pages/product-grids.blade.php ENDPATH**/ ?>

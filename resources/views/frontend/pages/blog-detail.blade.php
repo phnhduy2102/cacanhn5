@@ -1,6 +1,6 @@
 @extends('frontend.layouts.master')
 
-@section('title','E-TECH || Blog Detail page')
+@section('title','Cá cảnh N5 || BÀI VIẾT')
 
 @section('main-content')
     <!-- Breadcrumbs -->

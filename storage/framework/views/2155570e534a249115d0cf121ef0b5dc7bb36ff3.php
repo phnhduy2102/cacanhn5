@@ -1,6 +1,6 @@
-@extends('frontend.layouts.master')
-@section('title','Cá cảnh N5 || LIÊN HỆ')
-@section('main-content')
+
+
+<?php $__env->startSection('main-content'); ?>
 	<!-- Breadcrumbs -->
 	<div class="breadcrumbs">
 		<div class="container">
@@ -8,7 +8,7 @@
 				<div class="col-12">
 					<div class="bread-inner">
 						<ul class="bread-list">
-							<li><a href="{{route('home')}}">Trang chủ<i class="ti-arrow-right"></i></a></li>
+							<li><a href="<?php echo e(route('home')); ?>">Trang chủ<i class="ti-arrow-right"></i></a></li>
 							<li class="active"><a href="javascript:void(0);">Liên hệ</a></li>
 						</ul>
 					</div>
@@ -26,14 +26,14 @@
 						<div class="col-lg-8 col-12">
 							<div class="form-main">
 								<div class="title">
-									@php
+									<?php
 										$settings=DB::table('settings')->get();
-									@endphp
+									?>
 									<h4>Liên lạc với chúng tôi</h4>
-									<h3>Cho chúng tôi biết cảm nghĩ của bạn @auth @else<span style="font-size:12px;" class="text-danger">[Bạn cần đăng nhập trước]</span>@endauth</h3>
+									<h3>Cho chúng tôi biết cảm nghĩ của bạn <?php if(auth()->guard()->check()): ?> <?php else: ?><span style="font-size:12px;" class="text-danger">[Bạn cần đăng nhập trước]</span><?php endif; ?></h3>
 								</div>
-								<form class="form-contact form contact_form" method="post" action="{{route('contact.store')}}" id="contactForm" novalidate="novalidate">
-									@csrf
+								<form class="form-contact form contact_form" method="post" action="<?php echo e(route('contact.store')); ?>" id="contactForm" novalidate="novalidate">
+									<?php echo csrf_field(); ?>
 									<div class="row">
 										<div class="col-lg-6 col-12">
 											<div class="form-group">
@@ -80,21 +80,21 @@
 									<i class="fa fa-phone"></i>
 									<h4 class="title">Gọi cho chúng tôi:</h4>
 									<ul>
-										<li>@foreach($settings as $data) {{$data->phone}} @endforeach</li>
+										<li><?php $__currentLoopData = $settings; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $data): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?> <?php echo e($data->phone); ?> <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?></li>
 									</ul>
 								</div>
 								<div class="single-info">
 									<i class="fa fa-envelope-open"></i>
 									<h4 class="title">Email:</h4>
 									<ul>
-										<li><a href="mailto:info@yourwebsite.com">@foreach($settings as $data) {{$data->email}} @endforeach</a></li>
+										<li><a href="mailto:info@yourwebsite.com"><?php $__currentLoopData = $settings; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $data): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?> <?php echo e($data->email); ?> <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?></a></li>
 									</ul>
 								</div>
 								<div class="single-info">
 									<i class="fa fa-location-arrow"></i>
 									<h4 class="title">Địa chỉ của chúng tôi:</h4>
 									<ul>
-										<li>@foreach($settings as $data) {{$data->address}} @endforeach</li>
+										<li><?php $__currentLoopData = $settings; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $data): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?> <?php echo e($data->address); ?> <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?></li>
 									</ul>
 								</div>
 							</div>
@@ -114,7 +114,7 @@
 	<!--/ End Map Section -->
 	
 	<!-- Start Shop Newsletter  -->
-	@include('frontend.layouts.newsletter')
+	<?php echo $__env->make('frontend.layouts.newsletter', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 	<!-- End Shop Newsletter -->
 	<!--================Contact Success  =================-->
 	<div class="modal fade" id="success" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -149,9 +149,9 @@
 		  </div>
 		</div>
 	</div>
-@endsection
+<?php $__env->stopSection(); ?>
 
-@push('styles')
+<?php $__env->startPush('styles'); ?>
 <style>
 	.modal-dialog .modal-content .modal-header{
 		position:initial;
@@ -168,9 +168,10 @@
 		margin: auto;
 	}
 </style>
-@endpush
-@push('scripts')
-<script src="{{ asset('frontend/js/jquery.form.js') }}"></script>
-<script src="{{ asset('frontend/js/jquery.validate.min.js') }}"></script>
-<script src="{{ asset('frontend/js/contact.js') }}"></script>
-@endpush
+<?php $__env->stopPush(); ?>
+<?php $__env->startPush('scripts'); ?>
+<script src="<?php echo e(asset('frontend/js/jquery.form.js')); ?>"></script>
+<script src="<?php echo e(asset('frontend/js/jquery.validate.min.js')); ?>"></script>
+<script src="<?php echo e(asset('frontend/js/contact.js')); ?>"></script>
+<?php $__env->stopPush(); ?>
+<?php echo $__env->make('frontend.layouts.master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH D:\laragon\www\cacanhn5\resources\views/frontend/pages/contact.blade.php ENDPATH**/ ?>
