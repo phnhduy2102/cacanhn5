@@ -40,7 +40,7 @@
     <div class="container-fluid">
         <div class="row">
             <?php
-            $category_lists=DB::table('categories')->where('status','active')->limit(3)->get();
+            $category_lists=DB::table('categories')->where('status','active')->limit(5)->get();
             ?>
             <?php if($category_lists): ?>
                 <?php $__currentLoopData = $category_lists; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $cat): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>

@@ -142,7 +142,7 @@ class OrderController extends Controller
         // dd($order->id);
         $users=User::where('role','admin')->first();
         $details=[
-            'title'=>'New Order Received',
+            'title'=>'Đã nhận được đơn hàng mới!',
             'actionURL'=>route('order.show',$order->id),
             'fas'=>'fa-file-alt'
         ];

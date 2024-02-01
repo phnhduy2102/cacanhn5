@@ -22,7 +22,7 @@
               <th>Tên</th>
               <th>Email</th>
               <th>Số lượng.</th>
-              <th>Giá</th>
+              <th>Phí vận chuyển</th>
               <th>Tổng</th>
               <th>Trạng thái</th>
               <th>Hành động</th>
@@ -36,11 +36,11 @@
                 <tr>
                     <td>{{$order->id}}</td>
                     <td>{{$order->order_number}}</td>
-                    <td>{{$order->first_name}} {{$order->last_name}}</td>
+                    <td>{{$order->last_name}} {{$order->first_name}}</td>
                     <td>{{$order->email}}</td>
                     <td>{{$order->quantity}}</td>
                     <td>@foreach($shipping_charge as $data) {{number_format($data)}}đ @endforeach</td>
-                    <td>${{number_format($order->total_amount,2)}}</td>
+                    <td>{{number_format($order->total_amount)}}đ</td>
                     <td>
                         @if($order->status=='new')
                           <span class="badge badge-primary">Mới</span>

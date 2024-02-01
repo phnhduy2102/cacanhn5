@@ -36,7 +36,7 @@
                 <tr>
                     <td>{{$counter}}</td>
                     <td>{{$order->order_number}}</td>
-                    <td>{{$order->first_name}} {{$order->last_name}}</td>
+                    <td>{{$order->last_name}} {{$order->first_name}}</td>
                     <td>{{$order->email}}</td>
                     <td>{{$order->quantity}}</td>
                     <td>{{$order->shipping->price}}đ</td>

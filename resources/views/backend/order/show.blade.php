@@ -4,7 +4,7 @@
 
 @section('main-content')
 <div class="card">
-<h5 class="card-header">Đơn hàng       <a href="{{route('order.pdf',$order->id)}}" class=" btn btn-sm btn-primary shadow-sm float-right"><i class="fas fa-download fa-sm text-white-50"></i> Tải đơn hàng (PDF)</a>
+<h5 class="card-header">Đơn hàng    <a href="{{route('order.pdf',$order->id)}}" class=" btn btn-sm btn-primary shadow-sm float-right"><i class="fas fa-download fa-sm text-white-50"></i> Tải đơn hàng (PDF)</a>
   </h5>
   <div class="card-body">
     @if($order)
@@ -26,11 +26,11 @@
         <tr>
             <td>{{$order->id}}</td>
             <td>{{$order->order_number}}</td>
-            <td>{{$order->first_name}} {{$order->last_name}}</td>
+            <td>{{$order->last_name}} {{$order->first_name}}</td>
             <td>{{$order->email}}</td>
             <td>{{$order->quantity}}</td>
-            <td>${{$order->shipping->price}}</td>
-            <td>${{number_format($order->total_amount,2)}}</td>
+            <td>{{$order->shipping->price}}đ</td>
+            <td>{{number_format($order->total_amount)}}đ</td>
             <td>
                 @if($order->status=='new')
                   <span class="badge badge-primary">Mới</span>
@@ -47,7 +47,7 @@
                 <form method="POST" action="{{route('order.destroy',[$order->id])}}">
                   @csrf
                   @method('delete')
-                      <button class="btn btn-danger btn-sm dltBtn" data-id={{$order->id}} style="height:30px; width:30px;border-radius:50%" data-toggle="tooltip" data-placement="bottom" title="Giao hàng"><i class="fas fa-trash-alt"></i></button>
+                      <button class="btn btn-danger btn-sm dltBtn" data-id={{$order->id}} style="height:30px; width:30px;border-radius:50%" data-toggle="tooltip" data-placement="bottom" title="Xóa"><i class="fas fa-trash-alt"></i></button>
                 </form>
             </td>
 
@@ -80,15 +80,15 @@
                     </tr>
                     <tr>
                         <td>Phí giao hàng</td>
-                        <td> : $ {{$order->shipping->price}}</td>
+                        <td> :  {{$order->shipping->price}}đ</td>
                     </tr>
                     <tr>
                       <td>Mã giảm giá</td>
-                      <td> : $ {{number_format($order->coupon,2)}}</td>
+                      <td> :  {{number_format($order->coupon)}}đ</td>
                     </tr>
                     <tr>
                         <td>Tổng tiền</td>
-                        <td> : $ {{number_format($order->total_amount,2)}}</td>
+                        <td> :  {{number_format($order->total_amount)}}đ</td>
                     </tr>
                     <tr>
                         <!-- <td>Payment Method</td>
@@ -132,7 +132,7 @@
               <table class="table">
                     <tr class="">
                         <td>Họ tên</td>
-                        <td> : {{$order->first_name}} {{$order->last_name}}</td>
+                        <td> : {{$order->last_name}} {{$order->first_name}}</td>
                     </tr>
                     <tr>
                         <td>Email</td>

@@ -97,7 +97,7 @@
                                                 <option value="GL">Gia Lai</option>
                                                 <option value="HG">Hà Giang</option>
                                                 <option value="HA">Hà Nam</option>
-                                                <option value="HN">Hà Nội</option>
+                                                <option value="Hà Nội">Hà Nội</option>
                                                 <option value="HT">Hà Tĩnh</option>
                                                 <option value="HD">Hải Dương</option>
                                                 <option value="HP">Hải Phòng</option>
@@ -191,11 +191,11 @@
                                                     </select>
                                                 @else 
                                                     <span>Miễn phí</span>
-                                                @endif
+                                                @endif 
                                             </li>
                                             
                                             @if(session('coupon'))
-                                            <li class="coupon_price" data-price="{{session('coupon')['value']}}">Bạn đã tiết kiệm<span>{{number_format(session('coupon')['value'])}}đ</span></li>
+                                            <li class="coupon_price" data-price="{{session('coupon')['value']}}">Bạn đã tiết kiệm: <span>{{number_format(session('coupon')['value'])}}đ</span></li>
                                             @endif
                                             @php
                                                 $total_amount=Helper::totalCartPrice();
