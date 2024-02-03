@@ -406,7 +406,7 @@
 				let subtotal = parseFloat( $('.order_subtotal').data('price') ); 
 				let coupon = parseFloat( $('.coupon_price').data('price') ) || 0; 
 				// alert(coupon);
-				$('#order_total_price span').text((subtotal + cost-coupon).toLocaleString()+'đ');
+				$('#order_total_price span').text((subtotal + cost-coupon).toLocaleString('en-US')+'đ');
 			});
 
 		});
