@@ -122,7 +122,7 @@
                         <img class="default-img" src="{{$photos[0]}}" alt="{{$photos[0]}}">
                         <img class="hover-img" src="{{$photos[0]}}" alt="{{$photos[0]}}">
                         @if($product->stock <= 0)
-                            <span class="out-of-stock">Hết hàng</span>
+                            <span class="out-of-stock">Hết hàng!</span>
                         @elseif($product->condition == 'new')
                             <span class="new">Mới</span>
                         @elseif($product->condition == 'hot')
