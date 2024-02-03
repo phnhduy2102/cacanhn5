@@ -123,7 +123,7 @@
                         <img class="default-img" src="<?php echo e($photos[0]); ?>" alt="<?php echo e($photos[0]); ?>">
                         <img class="hover-img" src="<?php echo e($photos[0]); ?>" alt="<?php echo e($photos[0]); ?>">
                         <?php if($product->stock <= 0): ?>
-                            <span class="out-of-stock">Hết hàng</span>
+                            <span class="out-of-stock">Hết hàng!</span>
                         <?php elseif($product->condition == 'new'): ?>
                             <span class="new">Mới</span>
                         <?php elseif($product->condition == 'hot'): ?>
