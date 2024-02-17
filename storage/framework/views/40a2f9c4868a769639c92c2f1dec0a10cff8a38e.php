@@ -21,6 +21,7 @@
               <th>Mã đơn hàng.</th>
               <th>Tên</th>
               <th>Email</th>
+              <th>Tên sản phẩm</th>
               <th>Số lượng.</th>
               <th>Phí vận chuyển</th>
               <th>Tổng</th>
@@ -38,6 +39,14 @@
                     <td><?php echo e($order->order_number); ?></td>
                     <td><?php echo e($order->last_name); ?> <?php echo e($order->first_name); ?></td>
                     <td><?php echo e($order->email); ?></td>
+                    <td>
+                        <?php if($order->product): ?>
+                        <?php echo e($order->product->title); ?>
+
+                        <?php else: ?>
+                        Không tìm thấy sản phẩm
+                        <?php endif; ?>
+                    </td>
                     <td><?php echo e($order->quantity); ?></td>
                     <td><?php $__currentLoopData = $shipping_charge; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $data): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?> <?php echo e(number_format($data)); ?>đ <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?></td>
                     <td><?php echo e(number_format($order->total_amount)); ?>đ</td>

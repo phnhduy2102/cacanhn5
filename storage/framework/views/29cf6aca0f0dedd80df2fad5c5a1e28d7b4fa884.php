@@ -106,19 +106,7 @@
                                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                 </div>
                                 <!--/ End Single Widget -->
-                                <!-- Single Widget -->
-                                <div class="single-widget category">
-                                    <h3 class="title">Thương hiệu</h3>
-                                    <ul class="categor-list">
-                                        <?php
-                                            $brands=DB::table('brands')->orderBy('title','ASC')->where('status','active')->get();
-                                        ?>
-                                        <?php $__currentLoopData = $brands; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $brand): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                            <li><a href="<?php echo e(route('product-brand',$brand->slug)); ?>"><?php echo e($brand->title); ?></a></li>
-                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                                    </ul>
-                                </div>
-                                <!--/ End Single Widget -->
+                                
                         	</div>
 						</div>
 						<div class="col-lg-9 col-md-8 col-12">

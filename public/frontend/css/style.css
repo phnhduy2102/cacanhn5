@@ -4881,6 +4881,7 @@ Version:1.0
 .footer .links ul {
 }
 .footer .links ul li {
+    color: #ffffff;
     display: block;
     margin-bottom: 8px;
 }

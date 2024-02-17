@@ -22,7 +22,6 @@
               <th>Tên</th>
               <th>Email</th>
               <th>Số lượng.</th>
-              <th>Tên sản phẩm</th>
               <th>Phí vận chuyển</th>
               <th>Tổng</th>
               <th>Trạng thái</th>

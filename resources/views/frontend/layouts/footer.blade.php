@@ -28,7 +28,7 @@
 								<li><a href="#">Faq</a></li>
 								<li><a href="#">Điều khoản và điều kiện</a></li>
 								<li><a href="{{route('contact')}}">Liên hệ chúng tôi</a></li>
-								<li><a href="#">Hỗ trợ</a></li>
+								
 							</ul>
 						</div>
 						<!-- End Single Widget -->
@@ -36,13 +36,13 @@
 					<div class="col-lg-2 col-md-6 col-12">
 						<!-- Single Widget -->
 						<div class="single-footer links">
-							<h4>Dịch vụ khách hàng</h4>
+							<h4>Dịch vụ </h4>
 							<ul>
-								<li><a href="#">Phương thức thanh toán</a></li>
-								<li><a href="#">Money-back</a></li>
-								<li><a href="#">Returns</a></li>
-								<li><a href="#">Dịch vụ giao hàng</a></li>
-								<li><a href="#">Chính sách bảo mật</a></li>
+								<li>Phương thức thanh toán</li>
+								<li>Money-back</li>
+								<li>Returns</li>
+								<li>Dịch vụ giao hàng</li>
+								<li>Chính sách bảo mật</li>
 							</ul>
 						</div>
 						<!-- End Single Widget -->

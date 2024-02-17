@@ -57,7 +57,7 @@ class OrderController extends Controller
         // return $request->all();
 
         if(empty(Cart::where('user_id',auth()->user()->id)->where('order_id',null)->first())){
-            request()->session()->flash('error','Cart is Empty !');
+            request()->session()->flash('error','Giỏ hàng trống !');
             return back();
         }
         // $cart=Cart::get();

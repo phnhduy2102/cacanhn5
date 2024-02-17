@@ -1,5 +1,5 @@
 
-
+<?php $__env->startSection('title','Cá cảnh N5 || LIÊN HỆ'); ?>
 <?php $__env->startSection('main-content'); ?>
 	<!-- Breadcrumbs -->
 	<div class="breadcrumbs">

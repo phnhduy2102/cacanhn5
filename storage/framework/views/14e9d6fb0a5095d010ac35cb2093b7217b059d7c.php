@@ -20,7 +20,6 @@
               <th>#</th>
               <th>Mã đơn hàng.</th>
               <th>Tên</th>
-              <th>Tên sản phẩm</th>
               <th>Email</th>
               <th>Số lượng.</th>
               <th>Giá</th>
@@ -38,14 +37,6 @@
                     <td><?php echo e($counter); ?></td>
                     <td><?php echo e($order->order_number); ?></td>
                     <td><?php echo e($order->last_name); ?> <?php echo e($order->first_name); ?></td>
-                    <td>
-                        <?php if($order->product): ?>
-                        <?php echo e($order->product->title); ?>
-
-                        <?php else: ?>
-                        Không tìm thấy sản phẩm
-                        <?php endif; ?>
-                    </td>
                     <td><?php echo e($order->email); ?></td>
                     <td><?php echo e($order->quantity); ?></td>
                     <td><?php echo e($order->shipping->price); ?>đ</td>
