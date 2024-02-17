@@ -26,11 +26,11 @@
                                 <?php if(Auth::user()->role=='admin'): ?>
                                 <li><i class="fa fa-truck"></i> <a href="<?php echo e(route('order.track')); ?>">Theo dõi đơn hàng</a></li>
 
-                                    <li><i class="ti-user"></i> <a href="<?php echo e(route('admin')); ?>"  target="_blank">Thông tin cá nhân</a></li>
+                                    <li><i class="ti-user"></i> <a href="<?php echo e(route('admin')); ?>"  target="_blank"><?php echo e(Auth()->user()->name); ?></a></li>
                                 <?php else: ?> 
                                 <li><i class="fa fa-truck"></i> <a href="<?php echo e(route('order.track')); ?>">Theo dõi đơn hàng</a></li>
 
-                                    <li><i class="ti-user"></i> <a href="<?php echo e(route('user')); ?>"  target="_blank">Thông tin cá nhân</a></li>
+                                    <li><i class="ti-user"></i> <a href="<?php echo e(route('user')); ?>"  target="_blank"><?php echo e(Auth()->user()->name); ?></a></li>
                                 <?php endif; ?>
                                 <li><i class="ti-power-off"></i> <a href="<?php echo e(route('user.logout')); ?>">Đăng xuất</a></li>
 

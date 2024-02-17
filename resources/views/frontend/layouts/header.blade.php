@@ -26,11 +26,11 @@
                                 @if(Auth::user()->role=='admin')
                                 <li><i class="fa fa-truck"></i> <a href="{{route('order.track')}}">Theo dõi đơn hàng</a></li>
 
-                                    <li><i class="ti-user"></i> <a href="{{route('admin')}}"  target="_blank">Thông tin cá nhân</a></li>
+                                    <li><i class="ti-user"></i> <a href="{{route('admin')}}"  target="_blank">{{Auth()->user()->name}}</a></li>
                                 @else 
                                 <li><i class="fa fa-truck"></i> <a href="{{route('order.track')}}">Theo dõi đơn hàng</a></li>
 
-                                    <li><i class="ti-user"></i> <a href="{{route('user')}}"  target="_blank">Thông tin cá nhân</a></li>
+                                    <li><i class="ti-user"></i> <a href="{{route('user')}}"  target="_blank">{{Auth()->user()->name}}</a></li>
                                 @endif
                                 <li><i class="ti-power-off"></i> <a href="{{route('user.logout')}}">Đăng xuất</a></li>
 
