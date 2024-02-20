@@ -5,3 +5,4 @@
 5. Xử lí lưu thông tin đăng nhập
 --------------------------------------------------------------------------------------------
 PND(18/2/2024): Đã fix "thay đổi hiển thị theo tên tài khoản"
+NTL(20/2/2024): Đã sửa lại giao diện phương thức thanh toán paypal
