@@ -21,8 +21,15 @@ Route::get('user/logout','FrontendController@logout')->name('user.logout');
 
 Route::get('user/register','FrontendController@register')->name('register.form');
 Route::post('user/register','FrontendController@registerSubmit')->name('register.submit');
-// Reset password
-Route::post('password-reset', 'FrontendController@showResetForm')->name('password.reset'); 
+// Reset password (TungLam fix)
+
+
+Route::post('forget-password', 'Auth\ForgotPasswordController@submitForgetPasswordForm')->name('forget.password.post'); 
+
+Route::post('reset-password', 'Auth\ForgotPasswordController@submitResetPasswordForm')->name('reset.password.post');
+
+
+Route::any('password-reset', 'FrontendController@showResetForm')->name('password.reset'); 
 // Socialite 
 Route::get('login/{provider}/', 'Auth\LoginController@redirect')->name('login.redirect');
 Route::get('login/{provider}/callback/', 'Auth\LoginController@Callback')->name('login.callback');
@@ -175,8 +182,8 @@ Route::group(['prefix'=>'/user','middleware'=>['user']],function(){
     Route::patch('user-post/comment/udpate/{id}','HomeController@userCommentUpdate')->name('user.post-comment.update');
     
     // Password Change
-    Route::get('change-password', 'HomeController@changePassword')->name('user.change.password.form');
-    Route::post('change-password', 'HomeController@changPasswordStore')->name('change.password');
+    Route::any('/userPasswordChange', 'HomeController@changePassword')->name('user.change.password.form');
+    Route::post('/userPasswordChange', 'HomeController@changePasswordStore')->name('change.password');
 
 });
 

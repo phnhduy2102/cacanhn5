@@ -8,16 +8,17 @@
                 <div class="card-header">{{ __('Thay đổi mật khẩu') }}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('password.update') }}">
+                    <form method="POST" action="{{ route('reset.password.post') }}">
                         @csrf
 
                         <input type="hidden" name="token" value="{{ $token }}">
 
                         <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('Địa chỉ email') }}</label>
+                            <label for="email" class="col-md-4 col-form-label text-md-right">
+                                {{ __('Địa chỉ email') }}</label>
 
                             <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ $email ?? old('email') }}" required autocomplete="email" autofocus>
+                                <input type="text" id="email_address" class="form-control" name="email" required autofocus>
 
                                 @error('email')
                                     <span class="invalid-feedback" role="alert">

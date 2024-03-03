@@ -222,21 +222,45 @@
             <input name="payment_method"  type="radio" value="cod" required> <label> COD (Thanh toán khi nhận hàng)</label><br>
             <!-- <input name="payment_method"  type="radio" value="paypal"> <label> PayPal</label><br> -->
             <input name="payment_method"  type="radio" value="cardpay" required> <label> Thanh toán bằng thẻ</label><br>
-            
+            <input name="payment_method"  type="radio" value="VNPAY" required> <label> Thanh toán VNPAY </label><br>
             <!-- Credit Card Details -->
             <div id="creditCardDetails" style="display: none;">
-                <label for="cardNumber">Số thẻ:</label>
-                <input type="text" id="cardNumber" name="card_number" maxlength="16"><br>
-
-                <label for="cardName">Họ tên chủ thẻ:</label>
-                <input type="text" id="cardName" name="card_name"><br>
                 
-                <label for="expirationDate">Ngày hết hạn (EXP):</label>
-                <input type="text" id="expirationDate" name="expiration_date" maxlength="5"><br>
-                
-                <label for="cvv">CVV:</label>
-                <input type="text" id="cvv" name="cvv" maxlength="3"><br>
-            </div>
+                    <form role="form">
+                      <div class="form-group">
+                        <label for="cardName">Họ tên chủ thẻ </label>
+                        <input type="text" id="cardName" name="card_name" placeholder="Họ tên" required>
+                      </div>
+                      <div class="form-group">
+                        <label for="cardNumber">Số thẻ </label>
+                        <div class="input-group">
+                            <input type="text" id="cardNumber"name="card_number" maxlength="16" placeholder="Số thẻ" required>
+                            <div class="input-group-append">
+                                <span class="input-group-text text-muted">
+                                                            <i class="fa fa-cc-visa mx-1"></i>
+                                                            <i class="fa fa-cc-amex mx-1"></i>
+                                                            <i class="fa fa-cc-mastercard mx-1"></i>
+                                                        </span>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-sm-8">
+                              <div class="form-group">
+                                <label for="expirationDate">Ngày hết hạn (EXP)</label>
+                                <div class="input-group">
+                                  <input type="number" placeholder="MM" name="" id="expirationDate" name="expiration_date" required>
+                                  <input type="number" placeholder="YY" name="" id="expirationDate" name="expiration_date" required>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col-sm-4">
+                              <div class="form-group mb-4">
+                                <label title="cvv"> CVV <i class="fa fa-question-circle"></i>
+                                                        </label>
+                                <input type="text" required id="cvv" name="cvv" maxlength="3">
+                              </div>
+                            </div>
         </form-group>
     </div>
 </div>
@@ -406,7 +430,7 @@
 				let subtotal = parseFloat( $('.order_subtotal').data('price') ); 
 				let coupon = parseFloat( $('.coupon_price').data('price') ) || 0; 
 				// alert(coupon);
-				$('#order_total_price span').text('$'+(subtotal + cost-coupon).toFixed(2));
+				$('#order_total_price span').text((subtotal + cost-coupon).toLocaleString('en-US')+'đ');
 			});
 
 		});

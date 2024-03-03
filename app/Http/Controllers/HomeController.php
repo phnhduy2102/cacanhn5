@@ -211,9 +211,9 @@ class HomeController extends Controller
     }
 
     public function changePassword(){
-        return view('user.layouts.userPasswordChange');
+        return view('userPasswordChange');
     }
-    public function changPasswordStore(Request $request)
+    public function changePasswordStore(Request $request)
     {
         $request->validate([
             'current_password' => ['required', new MatchOldPassword],
@@ -223,7 +223,7 @@ class HomeController extends Controller
    
         User::find(auth()->user()->id)->update(['password'=> Hash::make($request->new_password)]);
    
-        return redirect()->route('user')->with('success','Thay đổi mật khẩu thành công.');
+        return redirect()->route('change.password')->with('success','Thay đổi mật khẩu thành công.');
     }
 
     
