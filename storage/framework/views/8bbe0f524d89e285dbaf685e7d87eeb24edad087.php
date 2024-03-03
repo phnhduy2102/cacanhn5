@@ -93,12 +93,12 @@
 												<form action="<?php echo e(route('single-add-to-cart')); ?>" method="POST">
 													<?php echo csrf_field(); ?>
 													<div class="quickview-stock">
-                                                <?php if($product_detail->stock >0): ?>
-                                                <span><i class="fa fa-check-circle-o"></i> <?php echo e($product_detail->stock); ?> Còn hàng</span>
-                                                <?php else: ?>
-                                                <span><i class="fa fa-times-circle-o text-danger"></i> <?php echo e($product_detail->stock); ?> Hết hàng</span>
-                                                <?php endif; ?>
-                                            </div> 
+                                                    <?php if($product_detail->stock >0): ?>
+                                                    <span><i class="fa fa-check-circle-o"></i> <?php echo e($product_detail->stock); ?> Còn hàng</span>
+                                                    <?php else: ?>
+                                                    <span><i class="fa fa-times-circle-o text-danger"></i> <?php echo e($product_detail->stock); ?> Hết hàng</span>
+                                                    <?php endif; ?>
+                                                    </div> 
 													<div class="quantity">
 														<h6>Số lượng :</h6>
 														<!-- Input Order -->
@@ -121,9 +121,8 @@
 													<div class="add-to-cart mt-4">
 														<button type="submit" class="btn">Thêm vào giỏ hàng</button>
 														<a href="<?php echo e(route('add-to-wishlist',$product_detail->slug)); ?>" class="btn min"><i class="ti-heart"></i></a>
-													</div>
+												</div>
 												</form>
-
 												<p class="cat">Danh mục chính:<a href="<?php echo e(route('product-cat',$product_detail->cat_info['slug'])); ?>"><?php echo e($product_detail->cat_info['title']); ?></a></p>
 												<?php if($product_detail->sub_cat_info): ?>
 												<p class="cat mt-1">Danh mục phụ :<a href="<?php echo e(route('product-sub-cat',[$product_detail->cat_info['slug'],$product_detail->sub_cat_info['slug']])); ?>"><?php echo e($product_detail->sub_cat_info['title']); ?></a></p>

@@ -161,9 +161,9 @@
         </div>
 </div>
 <!-- End Product Area -->
-{{-- @php
+{{--@php
     $featured=DB::table('products')->where('is_featured',1)->where('status','active')->orderBy('id','DESC')->limit(1)->get();
-@endphp --}}
+@endphp--}}
 <!-- Start Midium Banner  -->
 <section class="midium-banner">
     <div class="container">
@@ -178,7 +178,7 @@
                             @endphp
                             <img src="{{$photo[0]}}" alt="{{$photo[0]}}">
                             <div class="content">
-                                <p>{{$data->cat_info['title']}}</p>
+                                <h1>{{$data->cat_info['title']}}</h1>
                                 <h3>{{$data->title}} <br>Giảm tới<span> {{$data->discount}}%</span></h3>
                                 <a href="{{route('product-detail',$data->slug)}}">Mua ngay</a>
                             </div>
@@ -202,6 +202,14 @@
                 </div>
             </div>
         </div>
+        @php
+        $product_lists = DB::table('products')
+            ->where('status', 'active')
+            ->where('condition','hot')
+            ->orderBy('created_at', 'desc')
+            ->take(16) 
+            ->get();
+        @endphp
         <div class="row">
             <div class="col-12">
                 <div class="owl-carousel popular-slider">
@@ -217,7 +225,7 @@
                                     @endphp
                                     <img class="default-img" src="{{$photo[0]}}" alt="{{$photo[0]}}">
                                     <img class="hover-img" src="{{$photo[0]}}" alt="{{$photo[0]}}">
-                                    {{-- <span class="out-of-stock">Hot</span> --}}
+                                    <span class="hot">Hot</span> 
                                 </a>
                                 <div class="button-head">
                                     <div class="product-action">

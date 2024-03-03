@@ -24,9 +24,7 @@
               <th>Làm nổi bật</th>
               <th>Giá</th>
               <th>Giảm giá</th>
-              <th>Size</th>
               <th>Tình trạng</th>
-              <th>Thương hiệu</th>
               <th>Số lượng</th>
               <th>Ảnh</th>
               <th>Trạng thái</th>
@@ -52,9 +50,7 @@
                     <td>{{(($product->is_featured==1)? 'Có': 'Không')}}</td>
                     <td>{{$product->price}}đ</td>
                     <td>  {{$product->discount}}%</td>
-                    <td>{{$product->size}}</td>
                     <td>{{$product->condition}}</td>
-                    <td> {{ucfirst($product->brand->title)}}</td>
                     <td>
                       @if($product->stock>0)
                       <span class="badge badge-primary">{{$product->stock}}</span>
@@ -98,7 +94,7 @@
         @endif
       </div>
     </div>
-</div><!-- Visit 'codeastro' for more projects -->
+</div>
 @endsection
 
 @push('styles')
@@ -134,7 +130,7 @@
             "columnDefs":[
                 {
                     "orderable":false,
-                    "targets":[10,11,12]
+                    "targets":[8,9,10]
                 }
             ]
         } );

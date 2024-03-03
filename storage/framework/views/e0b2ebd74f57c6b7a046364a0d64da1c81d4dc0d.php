@@ -61,7 +61,7 @@
                     <form method="POST" action="<?php echo e(route('category.destroy',[$category->id])); ?>">
                       <?php echo csrf_field(); ?>
                       <?php echo method_field('delete'); ?>
-                          <button class="btn btn-danger btn-sm dltBtn" data-id=<?php echo e($category->id); ?> style="height:30px; width:30px;border-radius:50%" data-toggle="tooltip" data-placement="bottom" title="Xóa"><i class="fas fa-trash-alt"></i></button>
+                          <button class="btn btn-danger btn-sm dltBtn" data-id="<?php echo e($category->id); ?>" style="height:30px; width:30px;border-radius:50%" data-toggle="tooltip" data-placement="bottom" title="Xóa"><i class="fas fa-trash-alt"></i></button>
                         </form>
                     </td>
                 </tr>

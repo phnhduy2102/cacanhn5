@@ -177,7 +177,7 @@
                             ?>
                             <img src="<?php echo e($photo[0]); ?>" alt="<?php echo e($photo[0]); ?>">
                             <div class="content">
-                                <p><?php echo e($data->cat_info['title']); ?></p>
+                                <h1><?php echo e($data->cat_info['title']); ?></h1>
                                 <h3><?php echo e($data->title); ?> <br>Giảm tới<span> <?php echo e($data->discount); ?>%</span></h3>
                                 <a href="<?php echo e(route('product-detail',$data->slug)); ?>">Mua ngay</a>
                             </div>
@@ -201,6 +201,14 @@
                 </div>
             </div>
         </div>
+        <?php
+        $product_lists = DB::table('products')
+            ->where('status', 'active')
+            ->where('condition','hot')
+            ->orderBy('created_at', 'desc')
+            ->take(16) 
+            ->get();
+        ?>
         <div class="row">
             <div class="col-12">
                 <div class="owl-carousel popular-slider">
@@ -216,7 +224,7 @@
                                     ?>
                                     <img class="default-img" src="<?php echo e($photo[0]); ?>" alt="<?php echo e($photo[0]); ?>">
                                     <img class="hover-img" src="<?php echo e($photo[0]); ?>" alt="<?php echo e($photo[0]); ?>">
-                                    
+                                    <span class="hot">Hot</span> 
                                 </a>
                                 <div class="button-head">
                                     <div class="product-action">

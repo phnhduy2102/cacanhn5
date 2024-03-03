@@ -24,9 +24,7 @@
               <th>Làm nổi bật</th>
               <th>Giá</th>
               <th>Giảm giá</th>
-              <th>Size</th>
               <th>Tình trạng</th>
-              <th>Thương hiệu</th>
               <th>Số lượng</th>
               <th>Ảnh</th>
               <th>Trạng thái</th>
@@ -54,9 +52,7 @@
                     <td><?php echo e((($product->is_featured==1)? 'Có': 'Không')); ?></td>
                     <td><?php echo e($product->price); ?>đ</td>
                     <td>  <?php echo e($product->discount); ?>%</td>
-                    <td><?php echo e($product->size); ?></td>
                     <td><?php echo e($product->condition); ?></td>
-                    <td> <?php echo e(ucfirst($product->brand->title)); ?></td>
                     <td>
                       <?php if($product->stock>0): ?>
                       <span class="badge badge-primary"><?php echo e($product->stock); ?></span>
@@ -100,7 +96,7 @@
         <?php endif; ?>
       </div>
     </div>
-</div><!-- Visit 'codeastro' for more projects -->
+</div>
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startPush('styles'); ?>
@@ -136,7 +132,7 @@
             "columnDefs":[
                 {
                     "orderable":false,
-                    "targets":[10,11,12]
+                    "targets":[8,9,10]
                 }
             ]
         } );

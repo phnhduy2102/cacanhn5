@@ -93,12 +93,12 @@
 												<form action="{{route('single-add-to-cart')}}" method="POST">
 													@csrf
 													<div class="quickview-stock">
-                                                @if($product_detail->stock >0)
-                                                <span><i class="fa fa-check-circle-o"></i> {{$product_detail->stock}} Còn hàng</span>
-                                                @else
-                                                <span><i class="fa fa-times-circle-o text-danger"></i> {{$product_detail->stock}} Hết hàng</span>
-                                                @endif
-                                            </div> 
+                                                    @if($product_detail->stock >0)
+                                                    <span><i class="fa fa-check-circle-o"></i> {{$product_detail->stock}} Còn hàng</span>
+                                                    @else
+                                                    <span><i class="fa fa-times-circle-o text-danger"></i> {{$product_detail->stock}} Hết hàng</span>
+                                                    @endif
+                                                    </div> 
 													<div class="quantity">
 														<h6>Số lượng :</h6>
 														<!-- Input Order -->
@@ -121,9 +121,8 @@
 													<div class="add-to-cart mt-4">
 														<button type="submit" class="btn">Thêm vào giỏ hàng</button>
 														<a href="{{route('add-to-wishlist',$product_detail->slug)}}" class="btn min"><i class="ti-heart"></i></a>
-													</div>
+												</div>
 												</form>
-
 												<p class="cat">Danh mục chính:<a href="{{route('product-cat',$product_detail->cat_info['slug'])}}">{{$product_detail->cat_info['title']}}</a></p>
 												@if($product_detail->sub_cat_info)
 												<p class="cat mt-1">Danh mục phụ :<a href="{{route('product-sub-cat',[$product_detail->cat_info['slug'],$product_detail->sub_cat_info['slug']])}}">{{$product_detail->sub_cat_info['title']}}</a></p>

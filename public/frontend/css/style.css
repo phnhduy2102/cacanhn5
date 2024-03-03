@@ -1634,16 +1634,16 @@ Version:1.0
     font-size: 27px;
     font-weight: 700;
     text-transform: uppercase;
-    color: #ffffff;
+    color:#3c3c3c;
     line-height: 30px;
 }
 .midium-banner .single-banner h3 span {
     color: #8c52ff;
 }
-.midium-banner .single-banner p {
-    font-size: 13px;
+.midium-banner .single-banner h1 {
+    font-size: 20px;
     color: #8c52ff;
-    font-weight: 500;
+    font-weight: 700;
     margin-bottom: 5px;
     text-transform: uppercase;
 }
@@ -2369,10 +2369,10 @@ Version:1.0
 .shop.single .product-des .short .description {
     font-size: 14px;
     color: #555555;
-    margin-top: 20px;
-    margin-bottom: 20px;
-    padding-bottom: 20px;
-    border-bottom: 1px solid #eee;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    padding-bottom: 0px;
+    border-bottom: 1px solid #ffffff;
 }
 .shop.single .product-des {
 }
@@ -2413,7 +2413,7 @@ Version:1.0
     color: #8c52ff;
 }
 .shop.single .product-des .product-buy {
-    margin-top: 40px;
+    margin-top: 0px;
 }
 .shop.single .product-des .product-buy {
 }
